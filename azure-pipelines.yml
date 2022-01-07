@@ -10,22 +10,22 @@ pool:
 steps:
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'quickstarts/microsoft.web/webapp-basic-linux'
+    SourceFolder: 'quickstarts/microsoft.network/azure-bastion'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'ARMME'
+    azureResourceManagerConnection: 'ARMME2'
     subscriptionId: '874ca447-d4a1-4581-96a4-b7c0535ed527'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'ARMPipelinesSAID-rg'
+    resourceGroupName: 'ARMPipelinesSAID2-rg'
     location: 'westeurope'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
-    overrideParameters: '-webAppName mytestPerfect2312Said'
+    overrideParameters: '-webAppName mytestPerfect23122Said'
     #-administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
     deploymentMode: 'Incremental'
 
