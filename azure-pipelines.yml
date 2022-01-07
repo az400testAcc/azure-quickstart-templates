@@ -1,5 +1,4 @@
-variables:
-  ARM_PASS: $(adminpass)
+
 
 trigger:
 - none
@@ -10,7 +9,10 @@ pool:
 steps:
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'quickstarts/microsoft.network/azure-bastion'
+    SourceFolder: 'quickstarts/microsoft.network/azure-bastion/'
+# 'quickstarts/microsoft.compute/vm-simple-windows'
+#quickstarts/microsoft.compute/vm-simple-windows/
+#microsoft.network/vnet-to-vnet/azuredeploy.parameters.json
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -20,12 +22,11 @@ steps:
     azureResourceManagerConnection: 'ARMME'
     subscriptionId: '874ca447-d4a1-4581-96a4-b7c0535ed527'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'ARMPipelinesSAID2-rg'
+    resourceGroupName: 'ARMPipelinesSaid3-rg'
     location: 'westeurope'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
-    overrideParameters: '-webAppName mytestPerfect23122Said'
+    overrideParameters: '-bastionHostName mytest123456Said123'
     #-administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
     deploymentMode: 'Incremental'
-
